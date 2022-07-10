@@ -118,3 +118,33 @@ Having done that, I looked up for solutions to customize the executable's icon a
     ```
 
 ---
+
+## 11th July, 2022
+
+### 1. Inline and block comments
+
+C comments are like JavaScript comments. We type two forward slashes for an inline comment -
+
+```C
+// This is a single line comment
+```
+
+...and two asterisks surrounded by forward slashes (`/**/`). Anything inside the asterisks are ignored by the compiler -
+
+```C
+/**
+ * This
+ * is
+ * a
+ * multi-line
+ * comment
+ */
+```
+
+### 2. Escape sequences and `printf`
+
+-   Escape sequences are also the same as JavaScript. Escape sequences begin with a backslash followed by specific characters or symbols. For example - `\n`, `\t`, `\r`
+
+-   Unlike `console.log`, the `printf` method in C enters inline text in the terminal.
+
+---
