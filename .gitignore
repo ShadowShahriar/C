@@ -1,1 +1,4 @@
 src/*.exe
+src/*.rc
+src/*.res
+src/*.ico
