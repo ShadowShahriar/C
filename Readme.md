@@ -47,8 +47,74 @@ Today I collected several **C/C++ courses** and put them in [**this YouTube play
 
 ## 10th July, 2022 🎉
 
+### 1. Compiling the C program as an executable
+
 -   I learned about compilers (**GCC** and **Clang**) and how to install them. I haven't done this kind of thing before, so it seemed a bit confusing (especially the relation between **MinGW** and **GCC**). I ran through some issues while installing **MinGW** and found [**this video**](https://youtu.be/Zcy981HhGw0) that solved the problem.
 
--   I wrote [my first C program](./src/01-my-first-program.c) and compiled it as a Windows executable.
+-   I wrote [**my first C program**](./src/01-my-first-program.c) and compiled it as a Windows executable.
+
+Having done that, I looked up for solutions to customize the executable's icon and file details. I came to know about **windres** and resource files. [**This Stack Overflow answer**](https://stackoverflow.com/a/708382) helped me to accomplish what I was trying to do.
+
+### 2. Customizing the executable's appearance
+
+-   I created an icon, dropped in the working directory, and created a `icon.rc` file -
+
+    ```
+    id ICON "my-program.ico"
+    ```
+
+-   I converted that `.rc` file into a `.res` file using the **windres** command -
+
+    ```
+    windres icon.rc -O coff -o icon.res
+    ```
+
+-   Then I compiled the C program with **GCC** -
+
+    ```
+    gcc 01-my-first-program.c icon.res -o 01-my-first-program.exe
+    ```
+
+### 3. Adding version information to the executable
+
+-   I created another `.rc` file named `version.rc` and wrote the following -
+
+    ```
+    1 VERSIONINFO
+    FILEVERSION     1,0,0,0
+    PRODUCTVERSION  1,0,0,0
+    BEGIN
+    BLOCK "StringFileInfo"
+    	BEGIN
+    		BLOCK "040904E4"
+    		BEGIN
+    			VALUE "CompanyName", "Awesome Nonsense"
+    			VALUE "FileDescription", "My First C Program"
+    			VALUE "FileVersion", "1.0.0.0"
+    			VALUE "InternalName", "01-my-first-program"
+    			VALUE "LegalCopyright", "S. Shahriar <shadowshahriar.dev@gmail.com>"
+    			VALUE "OriginalFilename", "01-my-first-program.exe"
+    			VALUE "ProductName", "My App"
+    			VALUE "ProductVersion", "1.0.0.0"
+    		END
+    	END
+    BLOCK "VarFileInfo"
+    	BEGIN
+    		VALUE "Translation", 0x409, 1252
+    	END
+    END
+    ```
+
+-   Likewise, I converted the `.rc` file into a `.res` file -
+
+    ```
+    windres version.rc -O coff -o version.res
+    ```
+
+-   Then I compiled the program with both `.res` files -
+
+    ```
+    gcc 01-my-first-program.c icon.res version.res -o 01-my-first-program.exe
+    ```
 
 ---
