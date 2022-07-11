@@ -151,4 +151,35 @@ C comments are like JavaScript comments. We type two forward slashes for an inli
 
 -   Unlike `console.log`, the `printf` method in C enters inline text in the terminal.
 
+### 3. Variables
+
+-   Since **C is a statically typed language**, type checking is done at compile-time. (See [Stack Overflow answer: **What is the difference between statically typed and dynamically typed languages?**](https://stackoverflow.com/a/1520342))
+
+-   A variable is an allocated space in the memory to store a value. We refer to the name of the variable to access its stored value. We need to tell what kind of data we store in the variable. This process is called **Declaration**.
+
+-   Creating a variable is done in two steps - **Declaration** and **Initialization**. First, we specify the variable's data type, then we initialize it with a value.
+
+-   To display a variable's value in a `printf` statement, we add our variable (`maxZoom`) as an argument and specify a placeholder (`%d`) in the statement -
+
+    ```C
+    int maxZoom = 5;
+    printf("Maximum zoom is %d times", maxZoom);
+    ```
+
+    What placeholder we set depends on the variable's data type. For example -
+
+    | Data Type                        | Placeholder |
+    | -------------------------------- | ----------- |
+    | `int` (Integer)                  | `%d`        |
+    | `float` (Floating Point Number)  | `%f`        |
+    | `char` (Single Character)        | `%c`        |
+    | `char x[]` (Array of Characters) | `%s`        |
+
+-   While initializing a variable, we use single quotes (`''`) for single characters and double quotes (`""`) for an array of characters. For example -
+
+    ```C
+    char zoomAxis = 'Y';
+    char pane[] = "XZ";
+    ```
+
 ---
