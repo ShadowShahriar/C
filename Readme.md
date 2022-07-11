@@ -8,6 +8,10 @@ Currently, I am following a few YouTube videos and articles listed below. I will
 
 1. [**Bro Code**](https://www.youtube.com/c/BroCodez): [C Full Course 🕹️ -Learn to code today-【𝙁𝙧𝙚𝙚】](https://youtu.be/87SH2Cn0s9A)
 
+2. [**The Valley of Code**](https://thevalleyofcode.com/): [C Handbook](https://thevalleyofcode.com/c/)
+
+3. [**Beej**](https://beej.us): [Beej's Guide to C Programming](https://beej.us/guide/bgc/)
+
 # Daily Progress
 
 I will save **5-10 minutes** from my daily routine and write down what I learned today.
