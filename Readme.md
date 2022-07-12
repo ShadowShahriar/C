@@ -186,39 +186,34 @@ C comments are like JavaScript comments. We type two forward slashes for an inli
 
 ## 12th July, 2022
 
-### 1. Data types and placeholders
-
-| Data Type                                | Placeholder (Format Specifier)                         | Size                           |
-| ---------------------------------------- | ------------------------------------------------------ | ------------------------------ |
-| `char` (Single Character)                | `%c` (for ASCII characters), `%d` (for small integers) | 1 byte                         |
-| `char x[]` (Array of Characters)         | `%s`                                                   | -                              |
-| `int` (Integer)                          | `%d`                                                   | 4 bytes                        |
-| `float` (Floating Point Number)          | `%f`                                                   | 4 bytes (32 bits of precision) |
-| `double` (Double of `float`'s precision) | `%lf`                                                  | 8 bytes (64 bits of precision) |
-| `short` (Integer)                        | `%d`                                                   | 2 bytes                        |
-| `bool` (Boolean)                         | `%d`                                                   | 1 byte                         |
-
--   `double` is more accurate than `float` because it has more precision and uses more memory.
-
--   Technically it takes **1 bit** to represent a `boolean`. But the `bool` type still takes **1 byte** of memory.
-
-### 2. Size of data types
+### 1. Data Types and Format Specifiers
 
 **The ANSI C spec standard** determines the minimum values of each type.
 
-| Data Type | Minimum Range                    | Minimum Size |
-| --------- | -------------------------------- | ------------ |
-| `char`    | -128 to 127                      | 1 byte       |
-| `int`     | -2,147,483,648 to -2,147,483,647 | 4 bytes      |
-| `short`   | -32,768 to 32,767                | 2 bytes      |
-| `long`    | -2,147,483,648 to -2,147,483,647 | 4 bytes      |
+|          | Data Type                                   | Minimum Range                    | Format Specifier | Memory Size                    |
+| -------- | ------------------------------------------- | -------------------------------- | ---------------- | ------------------------------ |
+|          | **char** (Single Character)                 | -128 to 127                      | `%c` or `%d`     | 1 byte                         |
+| unsigned | **char** (Single Character)                 | 0 to 255                         | `%c` or `%d`     | 1 byte                         |
+|          | **char x[]** (Array of Characters)          |                                  | `%s`             |                                |
+|          | **bool** (Boolean)                          | 0 (false) and 1 (true)           | `%d`             | 1 byte                         |
+|          | **int** (Integer)                           | -2,147,483,648 to -2,147,483,647 | `%d`             | 4 bytes                        |
+| unsigned | **int** (Integer)                           | 0 to 4,294,967,295               | `%u`             | 4 bytes                        |
+|          | **short** (Integer)                         | -32,768 to 32,767                | `%d`             | 2 bytes                        |
+|          | **long** (Integer)                          | -2,147,483,648 to -2,147,483,647 | `%ld`            | 4 bytes                        |
+| unsigned | **long** (Integer)                          | 0 to 4,294,967,295               | `%lu`            | 4 bytes                        |
+|          | **long long** (Integer)                     | -9 quintillion to 9 quintillion  | `%lld`           | 8 bytes                        |
+| unsigned | **long long** (Integer)                     | 0 to 18 quintillion              | `%llu`           | 8 bytes                        |
+|          | **float** (Floating Point Number)           | first 6-7 digits                 | `%f`             | 4 bytes (32 bits of precision) |
+|          | **double** (Double of **float**s precision) | first 15-16 digits               | `%lf`            | 8 bytes (64 bits of precision) |
 
--   `char` is generally used to hold letters of the ASCII chart (%, A, b...). But it can be used to store small integers ranging from `-128` to `127`.
-
+-   `char` is generally used to hold letters of the ASCII chart (%, A, b...). But can be used to store small integers ranging from `-128` to `127`.
 -   We can prepend `unsigned` keyword to start the range from 0. In this way, the range for the `char` type becomes `0` to `255`.
+-   By default, most data types are already signed and we don't need to explicitly add the `signed` keyword.
+-   `double` is more accurate than `float` because it has more precision and uses more memory.
+-   Technically it takes **1 bit** to represent a `boolean`. But the `bool` type still takes **1 byte** of memory.
 
--   By default, most data types are already signed and we don't need to explicitly add the `signed keyword`.
+### 2. Overflow and Size of Data Types
 
--   **If we go beyond a type's range, it will reset to whatever the beginning is**. For example the `unsigned char` can hold integers from `0` to `255`. If we initialize with `256`, the result becomes `0`.
+-   **If we go beyond a type's range, it will reset to whatever the beginning is**. For example, the `unsigned char` can hold integers from `0` to `255`. If we initialize with `256`, the result becomes `0`.
 
--   The range for other integer types such as `int`, `short`, and `long` vary depending on the implementation and Operating System. We can create [a program to retrieve the size of data types](./src/05-size-of-the-types.c) using the `sizeof` method.
+-   The range for other integer types such as `int`, `short`, and `long` varies depending on the implementation and Operating System. We can create [a program to retrieve the size of data types](./src/05-size-of-the-types.c) using the `sizeof` method.
