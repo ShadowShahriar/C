@@ -183,3 +183,42 @@ C comments are like JavaScript comments. We type two forward slashes for an inli
     ```
 
 ---
+
+## 12th July, 2022
+
+### 1. Data types and placeholders
+
+| Data Type                                | Placeholder (Format Specifier)                         | Size                           |
+| ---------------------------------------- | ------------------------------------------------------ | ------------------------------ |
+| `char` (Single Character)                | `%c` (for ASCII characters), `%d` (for small integers) | 1 byte                         |
+| `char x[]` (Array of Characters)         | `%s`                                                   | -                              |
+| `int` (Integer)                          | `%d`                                                   | 4 bytes                        |
+| `float` (Floating Point Number)          | `%f`                                                   | 4 bytes (32 bits of precision) |
+| `double` (Double of `float`'s precision) | `%lf`                                                  | 8 bytes (64 bits of precision) |
+| `short` (Integer)                        | `%d`                                                   | 2 bytes                        |
+| `bool` (Boolean)                         | `%d`                                                   | 1 byte                         |
+
+-   `double` is more accurate than `float` because it has more precision and uses more memory.
+
+-   Technically it takes **1 bit** to represent a `boolean`. But the `bool` type still takes **1 byte** of memory.
+
+### 2. Size of data types
+
+**The ANSI C spec standard** determines the minimum values of each type.
+
+| Data Type | Minimum Range                    | Minimum Size |
+| --------- | -------------------------------- | ------------ |
+| `char`    | -128 to 127                      | 1 byte       |
+| `int`     | -2,147,483,648 to -2,147,483,647 | 4 bytes      |
+| `short`   | -32,768 to 32,767                | 2 bytes      |
+| `long`    | -2,147,483,648 to -2,147,483,647 | 4 bytes      |
+
+-   `char` is generally used to hold letters of the ASCII chart (%, A, b...). But it can be used to store small integers ranging from `-128` to `127`.
+
+-   We can prepend `unsigned` keyword to start the range from 0. In this way, the range for the `char` type becomes `0` to `255`.
+
+-   By default, most data types are already signed and we don't need to explicitly add the `signed keyword`.
+
+-   **If we go beyond a type's range, it will reset to whatever the beginning is**. For example the `unsigned char` can hold integers from `0` to `255`. If we initialize with `256`, the result becomes `0`.
+
+-   The range for other integer types such as `int`, `short`, and `long` vary depending on the implementation and Operating System. We can create [a program to retrieve the size of data types](./src/05-size-of-the-types.c) using the `sizeof` method.
