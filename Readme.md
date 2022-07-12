@@ -190,21 +190,21 @@ C comments are like JavaScript comments. We type two forward slashes for an inli
 
 **The ANSI C spec standard** determines the minimum values of each type.
 
-|          | Data Type                                   | Minimum Range                    | Format Specifier | Memory Size                    |
-| -------- | ------------------------------------------- | -------------------------------- | ---------------- | ------------------------------ |
-|          | **char** (Single Character)                 | -128 to 127                      | `%c` or `%d`     | 1 byte                         |
-| unsigned | **char** (Single Character)                 | 0 to 255                         | `%c` or `%d`     | 1 byte                         |
-|          | **char x[]** (Array of Characters)          |                                  | `%s`             |                                |
-|          | **bool** (Boolean)                          | 0 (false) and 1 (true)           | `%d`             | 1 byte                         |
-|          | **int** (Integer)                           | -2,147,483,648 to -2,147,483,647 | `%d`             | 4 bytes                        |
-| unsigned | **int** (Integer)                           | 0 to 4,294,967,295               | `%u`             | 4 bytes                        |
-|          | **short** (Integer)                         | -32,768 to 32,767                | `%d`             | 2 bytes                        |
-|          | **long** (Integer)                          | -2,147,483,648 to -2,147,483,647 | `%ld`            | 4 bytes                        |
-| unsigned | **long** (Integer)                          | 0 to 4,294,967,295               | `%lu`            | 4 bytes                        |
-|          | **long long** (Integer)                     | -9 quintillion to 9 quintillion  | `%lld`           | 8 bytes                        |
-| unsigned | **long long** (Integer)                     | 0 to 18 quintillion              | `%llu`           | 8 bytes                        |
-|          | **float** (Floating Point Number)           | first 6-7 digits                 | `%f`             | 4 bytes (32 bits of precision) |
-|          | **double** (Double of **float**s precision) | first 15-16 digits               | `%lf`            | 8 bytes (64 bits of precision) |
+|          | Data Type                                    | Minimum Range                    | Format Specifier | Memory Size                    |
+| -------- | -------------------------------------------- | -------------------------------- | ---------------- | ------------------------------ |
+|          | **char** (Single Character)                  | -128 to 127                      | `%c` or `%d`     | 1 byte                         |
+| unsigned | **char** (Single Character)                  | 0 to 255                         | `%c` or `%d`     | 1 byte                         |
+|          | **char x[]** (Array of Characters)           |                                  | `%s`             |                                |
+|          | **bool** (Boolean)                           | 0 (false) and 1 (true)           | `%d`             | 1 byte                         |
+|          | **int** (Integer)                            | -2,147,483,648 to -2,147,483,647 | `%d`             | 4 bytes                        |
+| unsigned | **int** (Integer)                            | 0 to 4,294,967,295               | `%u`             | 4 bytes                        |
+|          | **short** (Integer)                          | -32,768 to 32,767                | `%d`             | 2 bytes                        |
+|          | **long** (Integer)                           | -2,147,483,648 to -2,147,483,647 | `%ld`            | 4 bytes                        |
+| unsigned | **long** (Integer)                           | 0 to 4,294,967,295               | `%lu`            | 4 bytes                        |
+|          | **long long** (Integer)                      | -9 quintillion to 9 quintillion  | `%lld`           | 8 bytes                        |
+| unsigned | **long long** (Integer)                      | 0 to 18 quintillion              | `%llu`           | 8 bytes                        |
+|          | **float** (Floating Point Number)            | first 6-7 digits                 | `%f`             | 4 bytes (32 bits of precision) |
+|          | **double** (Double of **float**'s precision) | first 15-16 digits               | `%lf`            | 8 bytes (64 bits of precision) |
 
 -   `char` is generally used to hold letters of the ASCII chart (%, A, b...). But can be used to store small integers ranging from `-128` to `127`.
 -   We can prepend `unsigned` keyword to start the range from 0. In this way, the range for the `char` type becomes `0` to `255`.
@@ -217,3 +217,54 @@ C comments are like JavaScript comments. We type two forward slashes for an inli
 -   **If we go beyond a type's range, it will reset to whatever the beginning is**. For example, the `unsigned char` can hold integers from `0` to `255`. If we initialize with `256`, the result becomes `0`.
 
 -   The range for other integer types such as `int`, `short`, and `long` varies depending on the implementation and Operating System. We can create [a program to retrieve the size of data types](./src/05-size-of-the-types.c) using the `sizeof` method.
+
+## 13th July, 2022
+
+### 1. Format Specifiers
+
+-   We use format specifiers in a `printf` statement to specify the type of the data we want to display. Most common format specifiers are -
+
+    -   **%c** (Character)
+    -   **%d** (Integer)
+    -   **%s** (Array of Characters or _string_)
+    -   **%f** (Float)
+    -   **%lf** (Double)
+
+-   We also use format specifiers to _format_ the type of data to be displayed -
+
+    -   `%.1`: This one sets the decimal precision of a floating-point number. In other words, it specifies how many digits we want after the decimal point. For example -
+
+    ```C
+    float seek_at = 10.2324;
+    printf("Seek at: %.2f\n", seek_at); // Seek at: 10.23
+    printf("Seek at: %.3f\n", seek_at); // Seek at: 10.232
+    ```
+
+    -   `%1`: This one sets a minimum field width for the data. For example -
+
+    ```C
+    int seek = 10;
+    printf("Seek to: %9d\n", seek); // Seek to: <7 spaces>10
+    printf("Seek to: %4d\n", seek); // Seek to: <2 spaces>10
+    ```
+
+    -   `%-`: By default, the field text is **right-aligned**. We can append a minus after the percent sign for **left-aligned** text. For example -
+
+    ```C
+    int seeknext = 10;
+    int seekprev = 7;
+    printf("Next: %-9d\n", seeknext); // Seek to: 10<7 spaces>
+    printf("Back: %-9d\n", seekprev); // Seek to: 7<8 spaces>
+    ```
+
+    Obviously, we can mix them and create a custom format specifier -
+
+    ```C
+    float audience_retention = 57.33214;
+    float click_through_rate = 6.461127;
+    int impressions = 29501;
+
+    printf("Audience Retention: %12.3f\n", audience_retention);
+    printf("Click-through Rate: %12.3f\n", click_through_rate);
+    printf("Impressions: %19d\n", impressions);
+    ```
