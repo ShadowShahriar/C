@@ -268,3 +268,45 @@ C comments are like JavaScript comments. We type two forward slashes for an inli
     printf("Click-through Rate: %12.3f\n", click_through_rate);
     printf("Impressions: %19d\n", impressions);
     ```
+
+## 14th July, 2022
+
+### 1. Constants
+
+A constant is a fixed value that is unchanged during the program execution. That means a constant is a variable's value that **can't be initialized twice**. Let me clear it -
+
+-   Regular variables can be initialized **more than one time** -
+
+    ```C
+    float pi = 3.141592; // declaration + initialization
+    pi = 42.7;			 // re-initialization
+
+    printf("%f", pi); // 42.700001
+    ```
+
+-   But `const` variables can be initialized **only once** -
+
+    ```C
+    const float PI = 3.141592;
+    PI = 42.7;
+
+    printf("%f", PI); // error: assignment of read-only variable 'PI'
+    ```
+
+    It is considered good practice to type constant variable names in upper case.
+
+### 2. The `const` keyword vs `#define` directive
+
+Alternatively, we can **initialize** a constant right after including the header files -
+
+```C
+#include <stdio.h>
+#define RESOLUTION 1080
+
+printf("%u", RESOLUTION); // 1080
+```
+
+In this way -
+
+-   We omit the `=` and the semicolon `;`.
+-   We don't **declare** the constant's data type because the compiler will infer that from the value.
