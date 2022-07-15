@@ -310,3 +310,61 @@ In this way -
 
 -   We omit the `=` and the semicolon `;`.
 -   We don't **declare** the constant's data type because the compiler will infer that from the value.
+
+## 15th July, 2022
+
+### Beginning to C
+
+-   C was developed in **1972** by **Dennis Ritchie**.
+
+-   **C is a procedural programming language**: The commands are stored in a sequence and executed in that order (the **top-down** approach)
+
+-   **C is statically typed**: Type checking is done during _compile-time_.
+
+-   The syntax of other programming languages such as C++, C#, Java, JavaScript, Perl, and PHP was inspired by the C language's syntax. That's why **C is called the mother of all languages**.
+
+### Parts of a basic C program
+
+This is the first C program that I wrote a few days ago -
+
+```C
+#include <stdio.h>
+
+int main()
+{
+	printf("My first C program.");
+	printf("\n");
+	printf("C programming language was created in 1972 by Dennis Ritchie. Woah, that's 50 years ago!");
+	return 0;
+}
+```
+
+Let's break down the code into small chunks -
+
+-   `#include` is a preprocessor directive that tells C to insert the source code of the specified file. Imagine it as the `import` statement in JavaScript.
+
+-   `stdio` stands for **Standard Input Output**. `stdio.h` is a **header file** and contains necessary input/output functions (for example- that `printf` method). The source code of it would be inserted at the beginning of our C program.
+
+-   We can add more header files and include their source code in our final program -
+
+    ```C
+    #include <stdio.h>
+    #include <stdbool.h>
+    // ...
+    ```
+
+-   `main()` is the _main_ function that will execute during _run-time_. Since the main function returns `0` so we declare the function's data type `int` -
+
+    ```C
+    int main()
+    {
+        // ...
+        return 0;
+    }
+    ```
+
+    -   We have learned that `int` data type can store a big set of positive and negative integers. But if we know our function will return a positive integer, why don't we declare its type to `unsigned int`?
+
+    -   Because `main()` will return `0` only when it executes without errors. In other cases, **it might return a negative value**.
+
+-   The `printf` statement logs inline text into the terminal. It can accept one or more arguments.
