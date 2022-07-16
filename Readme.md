@@ -389,7 +389,7 @@ int y = 20;
 | Increment (`++`)     | **x++**    | 11     |
 | Decrement (`--`)     | **y--**    | 19     |
 
-However, specifying the _wrong_ data types can yield **unexpected results** -
+Specifying the _wrong_ data types can yield **unexpected results** -
 
 ```C
 int x = 10;
@@ -405,9 +405,9 @@ float z = 0.5;
 | Multiplication (`*`) | `float result = x * a` | _0_        | `a` has an `int` type      |
 | Division (`/`)       | `float result = x / y` | _0.000000_ | `y` has an `int` type      |
 
--   When we divide an integer by another integer, we need to cast it with the `float` type - -
+When we divide an integer by another integer, we need to cast it with the `float` type -
 
-    ```C
-    float result = x / (float)y;
-    printf("%f", result); // 0.500000
-    ```
+```C
+float result = x / (float)y;
+printf("%f", result); // 0.500000
+```
