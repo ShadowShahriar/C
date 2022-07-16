@@ -368,3 +368,46 @@ Let's break down the code into small chunks -
     -   Because `main()` will return `0` only when it executes without errors. In other cases, **it might return a negative value**.
 
 -   The `printf` statement logs inline text into the terminal. It can accept one or more arguments.
+
+## 16th July, 2022
+
+### Arithmetic Operators
+
+```C
+int x = 10;
+int y = 20;
+```
+
+| Operator             | Operation  | Output |
+| -------------------- | ---------- | ------ |
+| Addition (`+`)       | **x + y**  | 30     |
+| Subtraction (`-`)    | **x - y**  | -10    |
+| Multiplication (`*`) | **x \* y** | 200    |
+|                      | **y / x**  | 2      |
+| Modulus (`%`)        | **x % y**  | 10     |
+|                      | **y % x**  | 0      |
+| Increment (`++`)     | **x++**    | 11     |
+| Decrement (`--`)     | **y--**    | 19     |
+
+However, specifying the _wrong_ data types can yield **unexpected results** -
+
+```C
+int x = 10;
+int y = 20;
+int a = 0.5;
+float z = 0.5;
+```
+
+| Operator             | Code                   | Output     | Reason                     |
+| -------------------- | ---------------------- | ---------- | -------------------------- |
+| Addition (`+`)       | `int result = x + z`   | _10_       | `result` has an `int` type |
+| Subtraction (`-`)    | `int result = x - z`   | _9_        | `result` has an `int` type |
+| Multiplication (`*`) | `float result = x * a` | _0_        | `a` has an `int` type      |
+| Division (`/`)       | `float result = x / y` | _0.000000_ | `y` has an `int` type      |
+
+-   When we divide an integer by another integer, we need to cast it with the `float` type - -
+
+    ```C
+    float result = x / (float)y;
+    printf("%f", result); // 0.500000
+    ```
