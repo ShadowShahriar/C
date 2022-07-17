@@ -411,3 +411,44 @@ When we divide an integer by another integer, we need to cast it with the `float
 float result = x / (float)y;
 printf("%f", result); // 0.500000
 ```
+
+## 17th July, 2022
+
+### Augmented Assignment Operators
+
+> Augmented Assignment Operators are used to replace a statement where an operator takes a variable as one of its arguments and then assigns the result back to that variable.
+
+For example -
+
+```C
+int x = 10;
+x = x + 10;
+```
+
+`x = x + 10` could be replaced by `x += 10`
+
+```C
+int x = 10;
+x += 10;
+```
+
+This could be done for all arithmetic operators -
+
+```C
+int a = 4, b = 32, c = 11, d = 44, e = 68;
+
+a += 10;
+printf("%d\n", a);
+
+b -= 2;
+printf("%d\n", b);
+
+c *= 6;
+printf("%d\n", c);
+
+d /= 4;
+printf("%d\n", d);
+
+e %= 2;
+printf("%d\n", e);
+```
