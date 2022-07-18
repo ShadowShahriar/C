@@ -452,3 +452,7 @@ printf("%d\n", d);
 e %= 2;
 printf("%d\n", e);
 ```
+
+## 18th July, 2022
+
+Couldn't practice anything because of an upcoming exam. I will try tomorrow.
