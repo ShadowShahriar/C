@@ -456,3 +456,13 @@ printf("%d\n", e);
 ## 18th July, 2022
 
 Couldn't practice anything because of an upcoming exam. I will try tomorrow.
+
+## 19th July, 2022
+
+-   We use the `scanf` method to take user input. `scanf` can accept numerical and character arrays.
+
+-   However, `scanf` doesn't accept white spaces. If we enter **Shadow Shahriar**, it will return **Shadow**. In such cases, we use the `fgets` method.
+
+-   The `fgets` method also renders the trailing newline character at the end of the input. To get rid of it, we replace the last character with `\0`.
+
+I remember completing exercises with `scanf` during my high school years.
